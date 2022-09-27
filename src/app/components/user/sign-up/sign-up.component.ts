@@ -13,11 +13,19 @@ export class SignUpComponent implements OnInit {
 
   user:User= new User();
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  roles!:any[];
 
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
     this.resetForm();
+    this.userService.getAllRoles().subscribe(
+      (data : any)=>{
+        console.log("check gia subscribe");
+        data.forEach((obj:any) => obj.selected = false);
+        this.roles = data;
+      }
+    );
   }
 
   resetForm(form?: NgForm) {
@@ -31,10 +39,13 @@ export class SignUpComponent implements OnInit {
       FirstName: '',
       LastName: ''
     }
+    if (this.roles)
+      this.roles.map(x => x.selected = false);
   }
 
   OnSubmit(form: NgForm) {
-    this.userService.registerUser(form.value)
+    var x = this.roles.filter(x => x.selected).map(y => y.Name);
+    this.userService.registerUser(form.value,x)
       .subscribe((data: any) => {
         console.log("-----------------");
         console.log(data);
@@ -45,5 +56,9 @@ export class SignUpComponent implements OnInit {
         else
         alert('User registration error');;
       });
+  }
+
+  updateSelectedRoles(index:number) {
+    this.roles[index].selected = !this.roles[index].selected;
   }
 }

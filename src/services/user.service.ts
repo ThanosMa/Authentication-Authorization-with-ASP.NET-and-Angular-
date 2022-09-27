@@ -16,13 +16,14 @@ export class UserService {
   // }
   constructor(private http:HttpClient) { }
 
-  registerUser(user: User):Observable<User> {
-    const body: User = {
+  registerUser(user: User, roles:string[]):Observable<User> {
+    const body = {
       UserName: user.UserName,
       Password: user.Password,
       Email: user.Email,
       FirstName: user.FirstName,
-      LastName: user.LastName
+      LastName: user.LastName,
+      Roles: roles
     }
     console.log(user);
     var reqHeader = new HttpHeaders({'No-Auth':'True'});
@@ -41,4 +42,24 @@ export class UserService {
    
    );
   }
+
+  getAllRoles() {
+    var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
+    return this.http.get(this.rootUrl + '/api/GetAllRoles', { headers: reqHeader });
+  }
+
+  // roleMatch(allowedRoles:string[]): boolean {
+  //   var isMatch = false;
+    
+  //   var userRoles=JSON.parse(localStorage.getItem('userRoles')|| 'null');
+    
+  //   allowedRoles.forEach((element:string) => {
+  //     if (userRoles.indexOf(element) > -1) {
+  //       isMatch = true;
+  //       return false;
+  //     }
+  //   });
+  //   return isMatch;
+
+  // }
 }

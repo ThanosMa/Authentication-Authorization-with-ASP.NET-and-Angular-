@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
     this.userService.userAuthentication(userName,password).subscribe((data : any)=>{
       
       localStorage.setItem('userToken',data.access_token);
+      localStorage.setItem('userRoles',data.role);
       console.log(data);
       this.router.navigate(['/home']);
     },
