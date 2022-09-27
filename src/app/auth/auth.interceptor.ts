@@ -30,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.router.navigateByUrl('/login');
         }
             
-        throw new Error("Method not implemented.");
+        throw new Error("Intercept error from last line, (throw)");
     }
     
 

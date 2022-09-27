@@ -15,7 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { ProductComponent } from './components/product/product.component';
+import { ProductComponent } from './components/user/product/product.component';
 
 
 @NgModule({
