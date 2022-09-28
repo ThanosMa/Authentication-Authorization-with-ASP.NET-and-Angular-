@@ -48,18 +48,19 @@ export class UserService {
     return this.http.get(this.rootUrl + '/api/GetAllRoles', { headers: reqHeader });
   }
 
-  // roleMatch(allowedRoles:string[]): boolean {
-  //   var isMatch = false;
+  roleMatch(allowedRoles:string[]): boolean {
+    var isMatch = false;
     
-  //   var userRoles=JSON.parse(localStorage.getItem('userRoles')|| 'null');
+    var userRoles:string[]=JSON.parse(localStorage.getItem('userRoles')|| 'null');
     
-  //   allowedRoles.forEach((element:string) => {
-  //     if (userRoles.indexOf(element) > -1) {
-  //       isMatch = true;
-  //       return false;
-  //     }
-  //   });
-  //   return isMatch;
+    allowedRoles.forEach((element:string) => {
+      if (userRoles.indexOf(element) > -1) {
+        isMatch = true;
+        return;
+      }
+    });
+    console.log("testing the return value of method roleMatch", isMatch);
+    return isMatch;
 
-  // }
+  }
 }

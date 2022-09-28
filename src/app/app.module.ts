@@ -17,6 +17,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ProductComponent } from './components/user/product/product.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
     HomeComponent,
     ProductComponent,
     AdminPanelComponent,
+    ForbiddenComponent,
 
   ],
   imports: [
